@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'yanglbme/gitee-pages-action'
     steps:
-      # - name: Sync to Gitee
-      #   uses: wearerequired/git-mirror-action@master
-      #   env:
-      #     SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
-      #   with:
-      #     source-repo: git@github.com:yanglbme/gitee-pages-action.git
-      #     destination-repo: git@gitee.com:yanglbme/gitee-pages-action.git
+      - name: Sync to Gitee
+        uses: wearerequired/git-mirror-action@master
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
+        with:
+          source-repo: git@github.com:YingyingJiang1/questionnaire.git
+          destination-repo: git@gitee.com:jiangyingying1031/questionnaire.git
 
         - name: Build Gitee Pages
         uses: yanglbme/gitee-pages-action@main

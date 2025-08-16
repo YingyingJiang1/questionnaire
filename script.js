@@ -4,8 +4,8 @@ function getQueryParam(name) {
 }
 
 // 从 URL 获取 taskid 作为 taskName
-const taskName = getQueryParam('taskid') || 'task1';
-const view = getQueryParam('view') || '1';
+const taskName = getQueryParam('taskid');
+const view = getQueryParam('view');
 
 // 修改标题显示：首字母大写 + Q + view
 document.getElementById('task-title').innerText =

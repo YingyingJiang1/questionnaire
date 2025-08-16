@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1e1e1e;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header#task-title {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  background-color: #9aabe3; /* Task 名称显色 */
+  font-weight: bold;
+  flex-shrink: 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+#code-container {
+  flex: 1;
+  display: flex;
+  height: calc(100vh - 50px);
+}
+
+.code-panel {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #444;
+  min-width: 100px;
+  height: 100%;
+  font-size: 20px;
+}
+
+.code-header {
+  flex-shrink: 0;
+  padding: 5px 10px;
+  font-weight: bold;
+  background-color: #3a3f4b;
+  color: #fff;
+}
+.code-header.target {
+  background-color: #d19a66; /* Target 文件颜色 */
+}
+
+.code-editor {
+  flex: 1;
+  font-size: 16pt;
+}
+
+
+/* Split.js gutter 样式 */
+.split-gutter {
+  background-color: #888;
+  cursor: col-resize;
+  width: 8px;
+  transition: background-color 0.2s;
+}
+.split-gutter:hover {
+  background-color: #f39c12;
+}

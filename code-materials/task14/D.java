@@ -1,0 +1,23 @@
+
+@PostMapping(consumes = "multipart/form-data", value = "/file/pdf")
+@Operation(
+        summary = "Convert a file to a PDF using LibreOffice",
+        description = "This endpoint converts a given file to a PDF using LibreOffice API"
+                + " Input:ANY Output:PDF Type:SISO")
+public ResponseEntity<byte[]> processFileToPDF(
+        @ModelAttribute final GeneralFile generalFile) throws Exception {
+    final MultipartFile inputFile = generalFile.getFileInput();
+    File file = null;
+    try {
+        file = convertToPdf(inputFile);
+        final PDDocument doc = pdfDocumentFactory.load(file);
+        return WebResponseUtils.pdfDocToWebResponse(
+                doc,
+                Filenames.toSimpleFileName(inputFile.getOriginalFilename())
+                        .replaceFirst("[.][^.]+$", "") + "_convertedToPDF.pdf");
+    } finally {
+        if (file != null) {
+            file.delete();
+        }
+    }
+}

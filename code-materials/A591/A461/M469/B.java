@@ -1,0 +1,35 @@
+@SuppressWarnings("unchecked")
+void remove(CacheDisposable<T> consumer) {
+     while (true) {
+          CacheDisposable<T>[] current = observers.get();
+          int n = current.length;
+          if (n == 0) {
+               return;
+          }
+          int j = -1;
+          int i = 0; 
+          while (n> i) { 
+               if (current[i] == consumer) {
+                    j = i;
+                    break;
+               }
+               i++;
+          } 
+          if (0> j) {
+               return;
+          }
+          CacheDisposable<T>[] next;
+          if (n == 1) {
+               next = EMPTY;
+          } else {
+               next = new CacheDisposable[n - 1];
+               System.arraycopy(current, 0, next, 0, j);
+               
+               System.arraycopy(current, j + 1, next, j, n - j - 1);
+          }
+
+          if (observers.compareAndSet(current, next)) {
+               return;
+          }
+     }
+}
